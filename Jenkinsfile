@@ -8,7 +8,7 @@ node {
 
     stage('Build image') {
 
-        app = docker.build("getintodevops/hellonode")
+        app = docker.build("khayrullinii/app-nginx")
     }
 
     stage('Push image') {
