@@ -23,9 +23,20 @@ pipeline {
     stage('Remove Unused docker image') {
       steps{
         sh "docker rmi $imagename:0.$BUILD_NUMBER"
-         sh "docker rmi $imagename:latest"
  
       }
     }
+    stage('Deploy to Kubernetes') {
+            when {
+                expression {
+                    return env.CHANGE_ID && env.CHANGE_ID.startsWith('refs/tags/')
+                }
+            }
+            steps {
+                script {
+                        sh "echo 'test'"
+                }
+            }
+        }
   }
 }
