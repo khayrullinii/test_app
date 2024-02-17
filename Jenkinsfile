@@ -64,7 +64,7 @@ pipeline {
           expression { params.BRANCH_and_TAG != "master" }
       } 
       steps{
-        sh (echo 'test')
+        sh "echo 'test'"
       }
      }
     }
