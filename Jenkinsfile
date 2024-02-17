@@ -1,8 +1,6 @@
 pipeline {
   environment {
     imagename = "khayrullinii/app-nginx"
-    registryCredential = 'khayrullinii'
-    dockerImage = ''
   }
   agent any
   stages {
@@ -16,9 +14,9 @@ pipeline {
     stage('Deploy Image') {
       steps{
         script {
-          docker.withRegistry( '', registryCredential ) {
-            dockerImage.push("$BUILD_NUMBER")
-             dockerImage.push('latest')
+          withCredentials([string(credentialsId: 'dockerhub-pwd', variable: 'dockerhubpwd')]) {
+                   sh 'docker login -u khayrullinii -p ${dockerhubpwd}'}
+          sh 'docker push $imagename:latest"'
           }
         }
       }
