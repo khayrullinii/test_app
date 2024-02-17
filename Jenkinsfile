@@ -27,14 +27,10 @@ pipeline {
       }
     }
     stage('Deploy to Kubernetes') {
-            when {
-                expression {
-                    return env.CHANGE_ID && env.CHANGE_ID.startsWith('refs/tags/')
-                }
-            }
+
             steps {
                 script {
-                        sh "echo 'test'"
+                        sh "echo $env.CHANGE_ID"
                 }
             }
         }
