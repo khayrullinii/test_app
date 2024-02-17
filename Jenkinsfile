@@ -14,7 +14,7 @@ pipeline {
     stage('Deploy Image') {
       steps{
         script {
-          withCredentials([string(credentialsId: 'dockerhub-pwd', variable: 'dockerhubpwd')]) {
+          withCredentials([string(credentialsId: 'dockerhub-pwd', passwordVariable: 'dockerhubpwd')]) {
                    sh 'docker login -u khayrullinii -p ${dockerhubpwd}'}
           sh 'docker push $imagename:latest"'
         }
