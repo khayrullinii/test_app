@@ -26,13 +26,5 @@ pipeline {
  
       }
     }
-    stage('Deploy to Kubernetes') {
-
-            steps {
-                script {
-                    TAG_NAME = sh(script: 'git describe --tags --abbrev=0', returnStdout: true).trim()
-                    sh('echo "Tag Name: ${TAG_NAME}"')                }
-            }
-        }
   }
 }
