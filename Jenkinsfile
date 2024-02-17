@@ -21,7 +21,7 @@ pipeline {
   }
 
   stages {
-  stage('BRANCH_and_TAG') {
+    stage('BRANCH_and_TAG') {
       when {
           expression { params.TYPE == 'BRANCH_and_TAG'}
       } 
