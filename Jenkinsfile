@@ -17,7 +17,6 @@ pipeline {
           withCredentials([string(credentialsId: 'dockerhub-pwd', variable: 'dockerhubpwd')]) {
                    sh 'docker login -u khayrullinii -p ${dockerhubpwd}'}
           sh 'docker push $imagename:latest"'
-          }
         }
       }
     }
