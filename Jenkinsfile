@@ -8,7 +8,7 @@ pipeline {
     choice choices: ['BRANCH_and_TAG'], description: '', name: 'TYPE'
     gitParameter (  branch: '', 
                 branchFilter: '.*', 
-                defaultValue: 'main', 
+                defaultValue: 'master', 
                 description: '', 
                 listSize: '10',
                 name: 'BRANCH_and_TAG', 
@@ -19,6 +19,8 @@ pipeline {
                 type: 'PT_BRANCH_TAG', 
                 useRepository: 'https://github.com/khayrullinii/test_app/')
   }
+
+  stages {
   stage('BRANCH_and_TAG') {
       when {
           expression { params.TYPE == 'BRANCH_and_TAG'}
@@ -34,8 +36,7 @@ pipeline {
               url: 'https://github.com/khayrullinii/test_app/']]]
               ) 
           }
-  }
-  stages {
+    }
     stage('Building image') {
       steps{
         script {
