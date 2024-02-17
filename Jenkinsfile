@@ -7,7 +7,7 @@ pipeline {
     stage('Building image') {
       steps{
         script {
-          sh 'docker build .'
+          sh 'docker build . -t khayrullinii/app-nginx:latest'
         }
       }
     }
@@ -16,7 +16,7 @@ pipeline {
         script {
           withCredentials([usernamePassword(credentialsId: 'dockerhub-pwd',usernameVariable: 'dockerhubname', passwordVariable: 'dockerhubpwd')]) {
                    sh 'docker login -u ${dockerhubname} -p ${dockerhubpwd}'}
-          sh 'docker push $(imagename):latest'
+          sh 'docker push $imagename:latest'
         }
       }
     }
